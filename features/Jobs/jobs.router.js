@@ -5,13 +5,13 @@ const app = express.Router();
 const JobsModel = require("./jobs.schema");
 
 app.get("/", async(req, res)=>{
-    const { sort, language } = req.query;
+    const { sort, language, page } = req.query;
     let jobs;
     try{
         if(language===undefined || language==="")
-            jobs = await JobsModel.find().sort({postedAt : sort});
+            jobs = await JobsModel.find().limit(10).skip(page*10).sort({postedAt : sort});
         else
-            jobs = await JobsModel.find({language}).sort({postedAt : sort});
+            jobs = await JobsModel.find({language}).limit(10).skip(page*10).sort({postedAt : sort});
         res.send(jobs);
     }catch(e){
         res.status(500).send({status: false, message:"Something went wrong"});
