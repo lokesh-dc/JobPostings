@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const JobsSchema = new mongoose.Schema({
 		company: {type: String, required: true},
-		postedAt: {type: Date},
+		postedAt: {type: String},
 		city: {type: String},
 		location: {type: String},
 		role: {type: String},
