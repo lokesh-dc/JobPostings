@@ -7,7 +7,7 @@ const JobsModel = require("./jobs.schema");
 app.get("/", async(req, res)=>{
     try{
         let jobs = await JobsModel.find();
-        res.send({status: true, jobs});
+        res.send(jobs);
     }catch(e){
         res.status(500).send({status: false, message:"Something went wrong"});
     }
